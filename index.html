@@ -9,10 +9,10 @@
 
 <body>
 
-    <!-- <video id="video" width="640" height="480" autoplay></video> -->
-    <button id="snap">Snap Photo</button>
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="take_photo">Take Photo</button>
+    <button id="reload_camera">Reload camera</button>
     <canvas id="canvas" width="640" height="480"></canvas>
-
 
     <script>
         var video = document.getElementById('video');
@@ -20,17 +20,23 @@
         var canvas = document.getElementById('canvas');
         var context = canvas.getContext('2d');
 
-        // Get access to the camera!
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            // // Not adding `{ audio: true }` since we only want video now
-            // navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
-            //     //video.src = window.URL.createObjectURL(stream);
-            //     video.srcObject = stream;
-            //     video.play();
-            // });
-            document.getElementById("snap").addEventListener("click", function () {
-                context.drawImage(video, 0, 0, 640, 480);
+            navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+                video.srcObject = stream;
+                video.play();
             });
+            document.getElementById("take_photo").addEventListener("click", function () {
+                takePicture();
+            });
+        }
+
+        document.getElementById("reload_camera").addEventListener("click", function () {
+            video.play();
+        });
+
+        function takePicture(){
+            context.drawImage(video, 0, 0, 640, 480);
+            video.stop();
         }
 
 
