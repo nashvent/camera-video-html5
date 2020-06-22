@@ -27,13 +27,7 @@
 
     <script>
         var video = document.getElementById('video');
-
-        var canvas = document.getElementById('canvas');
-        var context = canvas.getContext('2d');
-
-
-
-
+        
         document.getElementById("init_camera").addEventListener("click", function () {
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
@@ -57,9 +51,10 @@
             var width = video.offsetWidth
             , height = video.offsetHeight;
 
-            canvas = canvas || document.createElement('canvas');
+            var canvas = canvas || document.createElement('canvas');
             canvas.width = width;
             canvas.height = height;
+            var context = canvas.getContext('2d');
             context.drawImage(video, 0, 0, width, height);
             img.src = canvas.toDataURL('image/png');
 
