@@ -21,7 +21,7 @@
         <button id="init_camera">Init Camera</button>
         <video id="video" width="640" height="480" autoplay style="display: none;"></video>
         <button id="take_photo">Take Photo</button>
-        <canvas id="canvas" width="640" height="480" style="width: 640px; height: 480px;"></canvas>
+        <img id="photo" width="640" height="480" src="" alt="">
     </div>
 
 
@@ -53,11 +53,22 @@
         
 
         function takePicture() {
-            context.drawImage(video, 0, 0, 640, 480);
-            const mediaStream = video.srcObject;
-            const tracks = mediaStream.getTracks(); 
-            tracks[0].stop();
-            video.style.display = 'none';
+            var img = document.querySelector('photo');
+            var context;
+            var width = video.offsetWidth
+            , height = video.offsetHeight;
+
+            canvas = canvas || document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            context.drawImage(video, 0, 0, width, height);
+            img.src = canvas.toDataURL('image/png');
+
+            // context.drawImage(video, 0, 0, 640, 480);
+            // const mediaStream = video.srcObject;
+            // const tracks = mediaStream.getTracks(); 
+            // tracks[0].stop();
+            // video.style.display = 'none';
         }
 
 
