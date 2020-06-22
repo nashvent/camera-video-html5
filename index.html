@@ -5,13 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        canvas {  /* or some other selector */
-            width: 640px;
-            height: 480px;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -19,13 +12,14 @@
     <video id="video" width="640" height="480" autoplay style="display: none;"></video>
     <button id="take_photo">Take Photo</button>
     <button id="reload_camera">Reload camera</button>
-    <canvas id="canvas" width="640" height="480"></canvas>
+    <canvas id="canvas" width="640" height="480" style="width: 640px; height: 480px;"></canvas>
 
     <script>
         var video = document.getElementById('video');
 
         var canvas = document.getElementById('canvas');
         var context = canvas.getContext('2d');
+        
 
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
