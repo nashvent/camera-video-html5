@@ -20,20 +20,26 @@
     <div style="width: 600px; padding:100px">
         <button id="init_camera">Init Camera</button>
         <video id="video" width="640" height="480" autoplay style="display: none;"></video>
-        <button id="take_photo">Take Photo</button>
-        <img id="photo" width="640" height="480" src="https://www.w3schools.com/tags/img_girl.jpg" alt="">
+        <button id="take_photo" style="display:none;">Take Photo</button>
+        
     </div>
 
+    <img id="photo" width="480" height="640" src="https://www.w3schools.com/tags/img_girl.jpg" alt="">
 
     <script>
         var video = document.getElementById('video');
-        var canvas;
+	var take_photo_btn = document.getElementById('take_photo');
+	var init_camera_btn = document.getElementById('init_camera');
+	
+	var canvas;
         document.getElementById("init_camera").addEventListener("click", function () {
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
                     video.srcObject = stream;
                     video.play();
                     video.style.display = 'block';
+	init_camera_btn.style.display = 'none';
+	take_photo_btn.style.display = 'block';
                 });
             }
 
@@ -56,13 +62,15 @@
             var context = canvas.getContext('2d');
             context.drawImage(video, 0, 0, width, height);
             img.src = canvas.toDataURL('image/png');
-          
-
+        
+	
             // context.drawImage(video, 0, 0, 640, 480);
-            // const mediaStream = video.srcObject;
-            // const tracks = mediaStream.getTracks(); 
-            // tracks[0].stop();
-            // video.style.display = 'none';
+            const mediaStream = video.srcObject;
+            const tracks = mediaStream.getTracks(); 
+            tracks[0].stop();
+        video.style.display = 'none';
+	init_camera_btn.style.display = 'block';
+	take_photo_btn.style.display = 'none';
         }
     </script>
 </body>
