@@ -9,7 +9,7 @@
 
 <body>
 
-    <video id="video" width="640" height="480" autoplay style="display: none;"></video>
+    <video id="video" width="640" height="480" autoplay></video>
     <button id="take_photo">Take Photo</button>
     <button id="reload_camera">Reload camera</button>
     <canvas id="canvas" width="640" height="480" style="width: 640px; height: 480px;"></canvas>
@@ -19,7 +19,7 @@
 
         var canvas = document.getElementById('canvas');
         var context = canvas.getContext('2d');
-        
+
 
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
@@ -35,9 +35,15 @@
             video.play();
         });
 
-        function takePicture(){
+        function takePicture() {
             context.drawImage(video, 0, 0, 640, 480);
-            video.stop();
+            const mediaStream = video.srcObject;
+
+            // Through the MediaStream, you can get the MediaStreamTracks with getTracks():
+            const tracks = mediaStream.getTracks();
+
+            // Tracks are returned as an array, so if you know you only have one, you can stop it with: 
+            tracks[0].stop();
         }
 
 
