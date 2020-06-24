@@ -89,16 +89,16 @@
             document.getElementById("container-photo").style.display = val ? 'block' : 'none';
         }
 
-        navigator.mediaDevices.enumerateDevices()
-            .then(function (devices) {
-                devices.forEach(function (device) {
-                    document.write(device.kind + ": " + device.label +
-                        " id = " + device.deviceId +"<br>");
-                });
-            })
-            .catch(function (err) {
-                document.write(err.name + ": " + err.message);
-            });
+        // navigator.mediaDevices.enumerateDevices()
+        //     .then(function (devices) {
+        //         devices.forEach(function (device) {
+        //             document.write(device.kind + ": " + device.label +
+        //                 " id = " + device.deviceId +"<br>");
+        //         });
+        //     })
+        //     .catch(function (err) {
+        //         document.write(err.name + ": " + err.message);
+        //     });
 
     </script>
 
