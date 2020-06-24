@@ -34,7 +34,7 @@
         //     console.log("click container-video");
         //     takePicture();
         // });
-        $("#container-video").click(function(){
+        $("#container-video").on('click touch', function (){
             takePicture();
         });
 
@@ -43,7 +43,7 @@
         //     openCamera();
         // });
 
-        $("#container-photo").click(function(){
+        $("#container-photo").on('click touch', function (){
             openCamera();
         });
 
