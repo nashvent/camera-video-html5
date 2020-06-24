@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         .btn {
             width: 60px;
@@ -34,11 +34,18 @@
         //     console.log("click container-video");
         //     takePicture();
         // });
+        $("#container-video").click(function(){
+            takePicture();
+        });
 
         // document.getElementById("container-photo").addEventListener("click", function () {
         //     console.log("click container-photo");
         //     openCamera();
         // });
+
+        $("#container-photo").click(function(){
+            openCamera();
+        });
 
         function openCamera(){
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
