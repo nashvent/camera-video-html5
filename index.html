@@ -24,35 +24,38 @@
         <img id="photo" width="500" src="ejemplo-dni.jpg" alt="">
     </div>
 
+    <div id="devices-data">
+
+    </div>
 
     <script>
         var video = document.getElementById('video');
-       
+
         var canvas;
-       
-        $("#container-video").on('click touch', function (){
+
+        $("#container-video").on('click touch', function () {
             //alert("click container video");
             takePicture();
         });
 
-        $("#container-photo").on('click touch', function (){
+        $("#container-photo").on('click touch', function () {
             //alert("click container photo");
             openCamera();
         });
 
-        function openCamera(){
+        function openCamera() {
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                
+
                 navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
                     video.srcObject = stream;
                     video.play();
                     showCamera(true);
                     showPhoto(false);
-                }).catch(function(err) {
+                }).catch(function (err) {
                     alert(err)
                 });
             }
-            else{
+            else {
                 alert("No nav");
             }
         }
@@ -78,15 +81,27 @@
             showPhoto(true);
         }
 
-        function showCamera(val=true){
-            document.getElementById("container-video").style.display = val?'block':'none';
+        function showCamera(val = true) {
+            document.getElementById("container-video").style.display = val ? 'block' : 'none';
         }
 
-        function showPhoto(val=true){
-            document.getElementById("container-photo").style.display = val?'block':'none';
+        function showPhoto(val = true) {
+            document.getElementById("container-photo").style.display = val ? 'block' : 'none';
         }
+
+        navigator.mediaDevices.enumerateDevices()
+            .then(function (devices) {
+                devices.forEach(function (device) {
+                    document.write(device.kind + ": " + device.label +
+                        " id = " + device.deviceId +"<br>");
+                });
+            })
+            .catch(function (err) {
+                document.write(err.name + ": " + err.message);
+            });
 
     </script>
+
 </body>
 
 </html>
