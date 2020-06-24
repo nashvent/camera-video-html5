@@ -18,7 +18,7 @@
 <body>
 
     <div id="container-video" style="width: 500px; padding:10px; background-color:red; display: none;">
-        <video style="background-color:black" id="video" width="500" height="480" autoplay></video>
+        <video id="video" width="500" height="480" autoplay></video>
     </div>
     <div id="container-photo" style="width: 500px; padding:10px; background-color:green">
         <img id="photo" width="500" src="ejemplo-dni.jpg" alt="">
@@ -31,20 +31,25 @@
         var canvas;
        
         document.getElementById("container-video").addEventListener("click", function () {
+            console.log("click container-video");
             takePicture();
         });
 
         document.getElementById("container-photo").addEventListener("click", function () {
+            console.log("click container-photo");
             openCamera();
         });
 
         function openCamera(){
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                
                 navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
                     video.srcObject = stream;
                     video.play();
                     showCamera(true);
                     showPhoto(false);
+                }).catch(function(err) {
+                    alert(err)
                 });
             }
             else{
