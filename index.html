@@ -21,7 +21,7 @@
         <video id="video" width="500" height="480" autoplay muted playsinline></video>
     </div>
     <div id="container-photo" style="width: 500px; padding:10px; background-color:green">
-        <img id="photo" width="100%" src="ejemplo-dni.jpg" alt="">
+        <img id="photo" style="height:auto; width:auto; max-width:400px; display:block" src="ejemplo-dni.jpg" alt="">
     </div>
 
     <div id="devices-data">
@@ -29,7 +29,7 @@
     </div>
 
     <script>
-        alert("hi");
+        //alert("hi");
         var video = document.getElementById('video');
 
         var canvas;
@@ -75,7 +75,8 @@
             var context = canvas.getContext('2d');
             context.drawImage(video, 0, 0, width, height);
             img.src = canvas.toDataURL('image/png');
-
+	    img.style.width = (width - 130) + "px";
+   	    img.style.height = height + "px";
 
             // context.drawImage(video, 0, 0, 640, 480);
             const mediaStream = video.srcObject;
