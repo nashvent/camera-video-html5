@@ -17,10 +17,10 @@
 
 <body>
 
-    <div id="container-video" onclick="takePicture()" style="width: 500px; padding:10px; background-color:red; display: none;">
+    <div id="container-video" style="width: 500px; padding:10px; background-color:red; display: none;">
         <video id="video" width="500" height="480" autoplay></video>
     </div>
-    <div id="container-photo" onclick="openCamera()" style="width: 500px; padding:10px; background-color:green">
+    <div id="container-photo" style="width: 500px; padding:10px; background-color:green">
         <img id="photo" width="500" src="ejemplo-dni.jpg" alt="">
     </div>
 
@@ -30,21 +30,14 @@
        
         var canvas;
        
-        // document.getElementById("container-video").addEventListener("click", function () {
-        //     console.log("click container-video");
-        //     takePicture();
-        // });
         $("#container-video").on('click touch', function (){
-            takePicture();
+            alert("click container video");
+            //takePicture();
         });
 
-        // document.getElementById("container-photo").addEventListener("click", function () {
-        //     console.log("click container-photo");
-        //     openCamera();
-        // });
-
         $("#container-photo").on('click touch', function (){
-            openCamera();
+            alert("click container photo");
+            //openCamera();
         });
 
         function openCamera(){
