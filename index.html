@@ -21,7 +21,7 @@
         <video id="video" width="500" height="480" autoplay></video>
     </div>
     <div id="container-photo" style="width: 500px; padding:10px; background-color:green">
-        <img id="photo" width="500" src="ejemplo-dni.jpg" alt="">
+        <img id="photo" width="100%" src="ejemplo-dni.jpg" alt="">
     </div>
 
     <div id="devices-data">
@@ -56,7 +56,7 @@
                 });
             }
             else {
-                alert("No nav");
+                writeDevices();
             }
         }
 
@@ -89,16 +89,19 @@
             document.getElementById("container-photo").style.display = val ? 'block' : 'none';
         }
 
-        // navigator.mediaDevices.enumerateDevices()
-        //     .then(function (devices) {
-        //         devices.forEach(function (device) {
-        //             document.write(device.kind + ": " + device.label +
-        //                 " id = " + device.deviceId +"<br>");
-        //         });
-        //     })
-        //     .catch(function (err) {
-        //         document.write(err.name + ": " + err.message);
-        //     });
+        function writeDevices(){
+            navigator.mediaDevices.enumerateDevices()
+            .then(function (devices) {
+                devices.forEach(function (device) {
+                    document.write(device.kind + ": " + device.label +
+                        " id = " + device.deviceId +"<br>");
+                });
+            })
+            .catch(function (err) {
+                document.write(err.name + ": " + err.message);
+            });
+        }
+        
 
     </script>
 
