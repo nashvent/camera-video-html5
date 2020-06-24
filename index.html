@@ -18,7 +18,7 @@
 <body>
 
     <div id="container-video" style="width: 500px; padding:10px; background-color:red; display: none;">
-        <video id="video" width="500" height="480" autoplay></video>
+        <video id="video" width="500" height="480" autoplay muted playsinline></video>
     </div>
     <div id="container-photo" style="width: 500px; padding:10px; background-color:green">
         <img id="photo" width="100%" src="ejemplo-dni.jpg" alt="">
@@ -29,6 +29,7 @@
     </div>
 
     <script>
+        alert("hi");
         var video = document.getElementById('video');
 
         var canvas;
@@ -44,7 +45,7 @@
         });
 
 
-        writeDevices();
+        //writeDevices();
 
         function openCamera() {
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
