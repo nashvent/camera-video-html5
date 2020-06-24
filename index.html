@@ -43,6 +43,9 @@
             openCamera();
         });
 
+
+        writeDevices();
+
         function openCamera() {
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
@@ -56,7 +59,7 @@
                 });
             }
             else {
-                writeDevices();
+                alert("No devices")
             }
         }
 
@@ -92,9 +95,13 @@
         function writeDevices(){
             navigator.mediaDevices.enumerateDevices()
             .then(function (devices) {
+                console.log("devices", devices);
                 devices.forEach(function (device) {
-                    document.write(device.kind + ": " + device.label +
-                        " id = " + device.deviceId +"<br>");
+                    document.write("<b>kind: </b> "+ device.kind + " | ");
+                    document.write("<b>label: </b> "+ device.label + " | ");
+                    document.write("<b>deviceId: </b> "+ device.deviceId +  " | ");
+                    document.write("<b>groupId: </b> "+ device.groupId +  " <hr> ");
+                    
                 });
             })
             .catch(function (err) {
